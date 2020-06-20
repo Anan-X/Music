@@ -1,0 +1,44 @@
+body {
+  padding: 0;
+  margin: 0;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a{
+  color: black;
+}
+.footerPlayer{
+  position: fixed;
+  display: block;
+  width: 100%;
+  background-color: #F8F9FA;
+  bottom: 0;
+  overflow: hidden;
+  height: 50px;
+  /* visibility: hidden; */
+  /* visibility: ; */
+}
+.myMusic_index_left{
+  background-color: #F7F7F7;
+  /* vh   表示视图窗口的百分比 */
+  height: 100vh;    
+
+}
+/* .myMusic_index_left_btns button{
+
+} */
+.myMusic_index_right_table{
+  margin-top: 20px;
+}
+.uplaodMusic_index{
+  margin-top: 20px;
+}
+#iframe{
+  /* height: 100vh; */
+  width: 102%;
+  overflow: hidden;
+}
+
+.pointer:hover{
+  cursor: pointer;
+}

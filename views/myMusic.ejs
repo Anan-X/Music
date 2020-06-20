@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <!-- <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css"> -->
+  <script src="javascripts/jquery-3.4.1.min.js"></script>
+  <script src="javascripts/bootstrap.min.js"></script>
+
+  <title>Music</title>
+</head>
+
+<body>
+  <div class="container">
+    
+    <div class="row">
+      <!-- 左侧菜单栏 -->
+      <div class="col-lg-3 myMusic_index_left">
+        <div class="accordion" id="accordionExample">
+          <div class="card">
+            <div class="card-header" id="headingOne">
+              <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  创建的歌单 &nbsp;&nbsp;&nbsp;<span class="badge badge-secondary">6</span>
+                </button>
+              </h2>
+            </div>
+        
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+              <div class="card-body">
+                <div class="list-group myMusic_index_left_btns shadow p-3 mb-5 bg-white rounded">
+                  <button id="mylovemusic" type="button" class="list-group-item list-group-item-action active">
+                    我喜欢的音乐
+                  </button>
+                  <button id="sensitivemusic" type="button" class="list-group-item list-group-item-action">感性</button>
+                  <button type="button" class="list-group-item list-group-item-action">Morbi leo risus</button>
+                  <button type="button" class="list-group-item list-group-item-action">Porta ac consectetur ac</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingTwo">
+              <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  收藏的歌单 &nbsp;&nbsp;&nbsp;<span class="badge badge-secondary">8</span>
+                </button>
+              </h2>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+              <div class="card-body">
+                第二层位置
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" id="headingThree">
+              <h2 class="mb-0">
+                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  Collapsible Group Item #3
+                </button>
+              </h2>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+              <div class="card-body">
+                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 右侧歌曲列表 -->
+      <div class="col-lg-9">
+        <!-- 上方卡片区域显示用户信息 -->
+        <div class="card text-center">
+          <div class="card-header">
+            Featured
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">我喜欢的音乐</h5>
+            <div class="row no-gutters">
+              <div class="col-md-4">
+                <img src="/images/音乐.svg" class="card-img" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">用户的username</h5>
+                  <a href="/users/loginout" id="loginout" class="btn btn-primary">注销</a>
+                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer text-muted">
+            2 days ago
+          </div>
+        </div>
+        <!-- 遍历列表区域 -->
+        <table class="table table-hover myMusic_index_right_table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col"></th>
+              <th scope="col">歌曲列表</th>
+              <th scope="col">时长</th>
+              <th scope="col">歌手</th>
+              <th scope="col">专辑</th>
+              <th scope="col">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- <tr>
+              <th scope="row"><%= musiclist[0].id %></th>
+              <td><%= musiclist[0].musicname %></td>
+              <td><%= musiclist[0].time %></td>
+              <td><%= musiclist[0].singer %></td>
+              <td><%= musiclist[0].album %></td>
+            </tr> -->
+          </tbody>
+        </table>
+        
+        
+      </div>
+    </div>
+  
+  </div>
+  <script src="javascripts/index.js"></script>
+  <script src="javascripts/myMusic.js"></script>
+</body>
+
+</html>

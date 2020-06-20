@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <!-- <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css"> -->
+  <script src="javascripts/jquery-3.4.1.min.js"></script>
+  <script src="javascripts/bootstrap.min.js"></script>
+
+  <title>Music</title>
+</head>
+
+<body>
+  <div class="container uplaodMusic_index">
+    <div class="jumbotron">
+      <div class="row align-items-center">
+        <div class="col-lg-3">
+          <img src="images/云音乐-01.svg"/>
+        </div>
+        <div class=" col-lg-8 align-self-center offset-lg-1">
+          <h1 class="display-4 ">上传音乐</h1>
+        </div>
+      </div>
+      
+      <p class="lead">把你喜欢的音乐分享给大家吧，my good friends</p>
+      <hr class="my-4">
+      
+      <!-- 表单区域 -->
+      <form class="shadow-lg p-3 mb-5 bg-white rounded" action="/uploadmusicok" method="post" enctype="multipart/form-data">
+        <div class="form-row">
+          <div class="col-md-6 mb-3">
+            <label for="validationServer01">歌曲名称</label>
+            <input type="text" class="form-control is-valid" id="validationServer01" name="musicname"  required>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="validationServer02">歌手</label>
+            <input type="text" class="form-control is-valid" id="validationServer02" name="singer" required>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-md-6 mb-3">
+            <label for="validationServer03">歌曲时长</label>
+            <input type="text" class="form-control is-valid" id="validationServer03" name="time" required>
+            <div class="invalid-feedback">
+              Please provide a valid city.
+            </div>
+          </div>
+          <div class="col-md-6 mb-6">
+            <label for="validationServer04">专辑名称</label>
+            <input type="text" class="form-control is-valid" id="validationServer04" name="album" required>
+            <div class="invalid-feedback">
+              Please select a valid state.
+            </div>
+          </div>
+          
+        </div>
+        <div class="form-row">
+          <div class="col-md-6 mb-3">
+            <label for="validationServer06">分类</label>
+            <input type="text" class="form-control is-valid" id="validationServer06" name="sort" required>
+            <div class="invalid-feedback">
+              Please provide a valid city.
+            </div>
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="validationServer07">歌词</label>
+            <input type="text" class="form-control is-valid" id="validationServer07" name="musicword" required>
+            <div class="invalid-feedback">
+              Please select a valid state.
+            </div>
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="validationServer08">文件</label>
+            <input type="file" class="form-control is-valid" id="validationServer08" name="file" required>
+            <div class="invalid-feedback">
+              Please provide a valid zip.
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-check">
+            <input class="form-check-input is-valid" type="checkbox" value="" id="invalidCheck3" required>
+            <label class="form-check-label" for="invalidCheck3">
+              同意上传
+            </label>
+            <div class="invalid-feedback">
+              You must agree before submitting.
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-primary" type="submit">上传</button>
+      </form>
+    </div>
+  
+  </div>
+  <script src="javascripts/index.js"></script>
+  <script src="javascripts/myMusic.js"></script>
+</body>
+
+</html>
