@@ -1,11 +1,17 @@
 var dbCongif = require('../util/dbconfig.js')
 var fs = require('fs');
 
+
+
 // 获取music_list用户表
 getmusic = function(req, res, next) {
     console.log(req.session.userName)
+    // dataObj[0].username
     if(req.session.userName){
-        var sql = "select * from musiclist"
+        let tablename =req.query.username
+        // console.log(tablename)
+        var sql = "select * from "+tablename +""
+        
         var sqlArr = []
         var callBack = (err, data) => {
             if(err){
@@ -14,8 +20,8 @@ getmusic = function(req, res, next) {
             // 要把数据转换成JSON格式发到页面
             let reslutStr = JSON.stringify(data); 
             let reslutObj = JSON.parse(reslutStr)
-            //   console.log(reslutObj)
-            res.render('myMusic', { musiclist: reslutObj });
+            //   console.log("aaaaa"+reslutObj)
+            res.render('myMusic', { musiclist: reslutObj, userName:tablename });
             }
         }
         dbCongif.sqlConnect(sql, sqlArr, callBack)
@@ -26,7 +32,8 @@ getmusic = function(req, res, next) {
 }
 // 获取分类是我喜欢的音乐列表
 getmylovemusic = (req, res, next) =>{
-    let sql = "select * from musiclist where sort=?";
+    let tablename =req.query.username
+    let sql = "select * from "+tablename +" where sort=?";
     var sqlArr =['我喜欢的音乐'];
     var callBack = (err, data) =>{
         if(err){
@@ -42,7 +49,8 @@ getmylovemusic = (req, res, next) =>{
 }
 // 获取分类是感性的音乐列表
 getsensitivemusic = (req, res, next) =>{
-    let sql = "select * from musiclist where sort=?";
+    let tablename =req.query.username
+    let sql = "select * from "+ tablename +" where sort=?";
     var sqlArr =['感性'];
     var callBack = (err, data) =>{
         if(err){

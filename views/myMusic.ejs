@@ -87,7 +87,7 @@
               </div>
               <div class="col-md-8">
                 <div class="card-body">
-                  <h5 class="card-title">用户的username</h5>
+                  <h5 class="card-title"><%= userName %></h5>
                   <a href="/users/loginout" id="loginout" class="btn btn-primary">注销</a>
                   <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                 </div>
@@ -112,13 +112,17 @@
             </tr>
           </thead>
           <tbody>
-            <!-- <tr>
-              <th scope="row"><%= musiclist[0].id %></th>
-              <td><%= musiclist[0].musicname %></td>
-              <td><%= musiclist[0].time %></td>
-              <td><%= musiclist[0].singer %></td>
-              <td><%= musiclist[0].album %></td>
-            </tr> -->
+            <% musiclist.forEach(function(item, index){%>
+            <tr>
+              <th scope="row"><%= index+1 %></th>
+              <td><img name='<%= item.id %>' src="images/视频播放.svg"/></td>
+              <td ><span class="d-inline-block text-truncate" style="max-width: 100px;"><%=item.musicname %></span></td>
+              <td ><span class="d-inline-block text-truncate" style="max-width: 100px;"><%=item.time %></span></td>
+              <td ><span class="d-inline-block text-truncate" style="max-width: 100px;"><%=item.singer %></span></td>
+              <td ><span class="d-inline-block text-truncate" style="max-width: 100px;"><%=item.album %></span></td>
+              <td><button id="<%= item.id %>">移除歌单</button></td>
+            </tr>
+            <%})%>
           </tbody>
         </table>
         

@@ -1,24 +1,21 @@
    $("#mylovemusic").click(function () {
-       // let xhr = new XMLHttpRequest();
-       // xhr.open('get', 'http://127.0.0.1:3000/ajax');
-       // xhr.send();
-       // xhr.onload = function (){
-       //   console.log(xhr.responseText)
-       // }
-       $.get("/getmylovemusic", function (data, status) {
+    let search = window.location.search
+       $.get("/getmylovemusic"+search, function (data, status) {
            //    console.log(data)
            musicTbody(data, status);
        })
    })
    //   感性
    $("#sensitivemusic").click(function () {
-       $.get("/getsensitivemusic", function (data, status) {
+    let search = window.location.search
+       $.get("/getsensitivemusic"+search, function (data, status) {
         musicTbody(data, status);
        })
    })
 //    进入页面加载
    $(function () {
-       $.get("/getmylovemusic", function (data, status) {
+       let search = window.location.search  //获取url的参数
+       $.get("/getmylovemusic"+search, function (data, status) {
            //    console.log(data)
            musicTbody(data, status);
        })
