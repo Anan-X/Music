@@ -10,8 +10,6 @@ var usersRouter = require('./routes/users');
 var http = require('http');
 var app = express();
 var server = http.createServer(app);
-// post请求
-var bodyParser = require('body-parser')
 
 // 使用 session 中间件
 app.use(session({ 
@@ -21,11 +19,15 @@ app.use(session({
     secret: 'keyboard cat', 
     cookie: ('name', 'value', { path: '/', httpOnly: true,secure: false, maxAge:  60000 }),
     //重新保存：强制会话保存即使是未修改的。默认为true但是得写上
-    resave: true, 
+    resave: false, 
     //强制“未初始化”的会话保存到存储。 
     saveUninitialized: true,  
     
   }))
+// post请求
+var bodyParser = require('body-parser')
+
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({

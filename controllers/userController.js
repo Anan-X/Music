@@ -20,32 +20,37 @@ let login = (req, res) =>{
 let loginOk = (req, res) =>{
     let username = req.body.username;
     let password = req.body.password;
-    console.log(username,password)
     let sql = `select * from users where username=? and password=?`;
     let sqlArr = [username, password];
     let callback = (err, data)=>{
-        console.log(data)
         if(err){
             console.log(err);
         }else{
             if(data.length == 1){
-                let datastr = JSON.stringify(data);
+                let datastr = JSON.stringify(data)
                 let dataObj = JSON.parse(datastr)
-                req.session.userName = dataObj[0].username;
-                res.redirect(301,'http://127.0.0.1:3000/myMusic?username='+dataObj[0].username);
+                req.session.userName = dataObj[0].username
+                res.redirect('/myMusic?username='+dataObj[0].username);
             }else{
-                
                 res.send('用户名或密码错误');
             }
         }
-        res.end()
     }
     dbCofing.sqlConnect(sql, sqlArr, callback);
 }
 // 注销
 let loginOut = (req, res) =>{
-    req.session.userName =null;
-    res.redirect(301,'http://127.0.0.1:3000/users/')
+    // req.session.userName = null
+    // req.session.cookie.maxAge=0;
+    // req.session.destroy()
+    req.session.destroy(function(err){
+      console.log(err);
+  })
+    // res.redirect('/users/')
+  res.send({
+    'code':200,
+    'msg':'注销'
+  })
 }
 // 注册页面
 let register = (req, res) =>{
@@ -83,7 +88,7 @@ let registerOk = (req, res)=>{
     dbCofing.SySqlConnect(sql, sqlArr)
     // 创建用户存储歌单信息表
     creatTable(req,res,username)
-    res.redirect(301,'http://127.0.0.1:3000/users/');
+    res.redirect('/users/');
   }else{
     res.send({
       "code":400,
@@ -246,7 +251,7 @@ let loginPhoneOk = (req, res) =>{
         let dataObj = JSON.parse(datastr)
         let username = dataObj[0].username
         req.session.userName = username
-        res.redirect(301,'http://127.0.0.1:3000/myMusic?username='+username);
+        res.redirect('/myMusic?username='+username);
       }
     }
     dbCofing.sqlConnect(sql, sqlArr, callback)

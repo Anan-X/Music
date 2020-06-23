@@ -1,14 +1,7 @@
-
-// $("#hr").hover(
-//     function(){
-//        $(".footerPlayer").css("visibility","none")
-//     },
-//     function(){
-//         $(".footerPlayer").css("visibility","hidden")
-//     }
-// );
 $("#mymusic").click(function(){
-    $("#iframe").attr("src","/myMusic") 
+    let username = $('#iframe').contents().find('#user').text()
+    console.log(username+'lalal')
+    $("#iframe").attr("src","/myMusic?username="+username) 
 })
 $("#findmusic").click(function(){
     $("#iframe").attr("src","/findMusic") 

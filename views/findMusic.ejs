@@ -11,7 +11,7 @@
 </head>
 <body>
   <div class="container">
-    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel" style="margin-top: 20px;">
         <ol class="carousel-indicators">
           <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
           <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
@@ -49,6 +49,44 @@
           <span class="sr-only">Next</span>
         </a>
       </div>
+       <!-- 遍历列表区域 -->
+      <div style="margin-top: 20px;">
+        <table class="table table-hover myMusic_index_right_table">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col"></th>
+              <th scope="col">歌曲列表</th>
+              <th scope="col">时长</th>
+              <th scope="col">歌手</th>
+              <th scope="col">专辑</th>
+              <th scope="col">操作</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+      <!-- 点击添加到歌单 -->
+      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div id="playlist" class="modal-body btn-group-vertical">
+              
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+            </div>
+          </div>
+        </div>
+      </div>
   </div>
+  <script src="javascripts/findMusic.js"></script>
 </body>
 </html>

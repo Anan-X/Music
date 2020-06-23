@@ -1,21 +1,23 @@
    $("#mylovemusic").click(function () {
-    let search = window.location.search
-       $.get("/getmylovemusic"+search, function (data, status) {
+    let username = $('#user').text()
+       $.get("/getmylovemusic/?username="+username, function (data, status) {
            //    console.log(data)
            musicTbody(data, status);
        })
    })
    //   感性
    $("#sensitivemusic").click(function () {
-    let search = window.location.search
-       $.get("/getsensitivemusic"+search, function (data, status) {
+    let username = $('#user').text()
+       $.get("/getsensitivemusic/?username="+username, function (data, status) {
         musicTbody(data, status);
        })
    })
 //    进入页面加载
    $(function () {
-       let search = window.location.search  //获取url的参数
-       $.get("/getmylovemusic"+search, function (data, status) {
+    let username = $('#user').text()
+    // console.log(username+'lalal')
+    //    let search = window.location.search  //获取url的参数
+       $.get("/getmylovemusic/?username="+username, function (data, status) {
            //    console.log(data)
            musicTbody(data, status);
        })
@@ -98,3 +100,13 @@ var musicTbody = function(data, status){
            }
 }
 
+// 注销
+
+$("#loginout").click(function(){
+    // alert("注销")
+    $.get('/users/loginout',(data, status)=>{
+        if(data['code']==200){
+            window.location.href='http://127.0.0.1:3000/findmusic'
+        }
+    })
+})

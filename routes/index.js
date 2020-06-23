@@ -2,22 +2,23 @@ var express = require('express');
 var router = express.Router();
 var music = require('../controllers/musicController');
 var multer = require('multer');
-var dbCongif = require('../util/dbconfig.js')
 var fs = require('fs');
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index');
 });
 router.get('/findMusic', function(req, res, next) {
-  res.render('findMusic', { title: 'Express' });
+  res.render('findMusic');
 });
-router.get('/myMusic',music.getmusic);
+router.get('/musiclist',music.musiclist)
+router.get('/findsort',music.findsort)   //查照自己的歌单名称
+
+router.get('/addMyPlayList',music.addMyPlayList)  //将歌曲添加到自己的歌单里
+
+router.get('/myMusic',music.getmusic)
+
 router.get('/uploadMusic',function(req, res, next) {
-  res.render('uploadMusic', { title: 'Express' });
-});
-router.get('/ajax',(req, res) =>{
-  res.send('ajax');
-  
+  res.render('uploadMusic');
 });
 router.get('/getmylovemusic',music.getmylovemusic);
 router.get('/getsensitivemusic',music.getsensitivemusic);
