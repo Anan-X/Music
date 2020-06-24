@@ -63,7 +63,7 @@ let creatTable = (req, res, username) =>{
   let sql = 
         "CREATE TABLE IF NOT EXISTS `"+ username +"`("+
           "id INT UNSIGNED AUTO_INCREMENT,"+
-          "username VARCHAR(100) NOT NULL,"+
+          "musicname VARCHAR(100),"+
           "time VARCHAR(40),"+
           "singer VARCHAR(40),"+
           "album VARCHAR(40),"+

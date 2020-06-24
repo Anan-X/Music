@@ -48,46 +48,25 @@ let getmusic = (req, res) =>{
     }
     
 }
+// 获取歌单里面的歌曲列表
+let getSortPlayList = (req, res) =>{
+    let sort = req.query.sort
+    let tablename =req.query.username
+    let sql = "select * from "+tablename +" where sort=? and musicname is not null";
+    var sqlArr =[sort];
+    var callBack = (err, data) =>{
+        if(err){
+            console.log(err);
+        }else{
+        res.send(data)
+        }
+    }
+    dbCongif.sqlConnect(sql, sqlArr, callBack)
+}
 
-// 获取分类是我喜欢的音乐列表
-let getmylovemusic = (req, res, next) =>{
-    let tablename =req.query.username
-    let sql = "select * from "+tablename +" where sort=?";
-    var sqlArr =['我喜欢的音乐'];
-    var callBack = (err, data) =>{
-        if(err){
-            console.log("查询我喜欢歌曲失败");
-        }else{
-        //     let reslutStr = JSON.stringify(data); 
-        //   let reslutObj = JSON.parse(reslutStr)
-            // res.render('myMusic', { musiclist: reslutObj });
-        res.send(data)
-        }
-    }
-    dbCongif.sqlConnect(sql, sqlArr, callBack)
-}
-// 获取分类是感性的音乐列表
-let getsensitivemusic = (req, res, next) =>{
-    let tablename =req.query.username
-    let sql = "select * from "+ tablename +" where sort=?";
-    var sqlArr =['感性'];
-    var callBack = (err, data) =>{
-        if(err){
-            console.log("查询感性失败");
-        }else{
-        //     let reslutStr = JSON.stringify(data); 
-        //   let reslutObj = JSON.parse(reslutStr)
-        //   console.log(reslutObj)
-        //     res.render('myMusic', { musiclist: reslutObj });
-        res.send(data)
-        }
-    }
-    dbCongif.sqlConnect(sql, sqlArr, callBack)
-}
 // 获取用户的歌单名称
 let findsort = (req, res)=>{
     let username = req.session.userName
-    console.log(username+'  2222')
     if(username){
         let sql = `SELECT distinct sort FROM `+ username +` where sort is not null and sort <>''`
         let sqlArr = []
@@ -98,7 +77,6 @@ let findsort = (req, res)=>{
             }else{
                 let datastr = JSON.stringify(data)
                 let dataObj = JSON.parse(datastr)
-                console.log(dataObj)
                 res.send(dataObj)
             }
         }
@@ -125,7 +103,6 @@ let addMyPlayListIf = (req, id, sort)=>{
      let result = await dbCongif.SySqlConnect(sql, sqlArr)
      let resultstr = JSON.stringify(result)
      let resultObj = JSON.parse(resultstr)
-    //  console.log(resultObj)
      let musicname = resultObj[0].musicname
      let time = resultObj[0].time
      let singer = resultObj[0].singer
@@ -171,6 +148,31 @@ let addMyPlayList = async(req, res) =>{
         })
     }
 }
+// 创建歌单
+let createOk =(req, res)=>{
+    let sort = req.query.sort
+    let sql = `insert into `+req.session.userName+`(sort) values(?)`
+    let sqlArr = [sort]
+    let callBack = (err, data) =>{
+        if(err){
+            console.log(err)
+        }else{
+            if(data.affectedRows==1){
+                res.send({
+                    "code":200,
+                    "msg":"创建成功"
+                })
+            }else{
+                res.send({
+                    "code":400,
+                    "msg":"创建s失败"
+                })
+            }
+        }
+    }
+    dbCongif.sqlConnect(sql, sqlArr, callBack)
+}
+
 // 文件上传
 let uploadmusicok = (req, res, next) =>{
     if (req.file.length === 0) {  //判断一下文件是否存在，也可以在前端代码中进行判断。
@@ -213,7 +215,8 @@ let uploadmusicok = (req, res, next) =>{
 // 移除歌单
 let music_remove = (req, res) =>{
     let id = req.query.id;
-    let sql = `update musiclist set sort='' where id=?`;
+    let username = req.query.username
+    let sql = `delete from `+username+` where id=?`;
     let sqlArr =[id];
     let callBack =(err, data) =>{
         if(err){
@@ -222,19 +225,39 @@ let music_remove = (req, res) =>{
         }else{
             res.send({
                 'code':200,
-                'mgs':'修改成功'
+                'msg':'修改成功'
             })
         }
     }
     dbCongif.sqlConnect(sql, sqlArr, callBack);
 }
+// 删除歌单
+let deletePlayList = (req, res) =>{
+    let username = req.query.username
+    let sort = req.query.sort
+    let sql = `delete from `+username+` where sort=?`
+    let sqlArr = [sort]
+    let callBack = (err, data) =>{
+        if(err){
+            console.log("删除除失败");
+            return
+        }else{
+            res.send({
+                'code':200,
+                'msg':'删除成功'
+            })
+        }
+    }
+    dbCongif.sqlConnect(sql, sqlArr, callBack)
+}
 module.exports = {
     getmusic,
-    getmylovemusic,
-    getsensitivemusic,
     uploadmusicok,
     music_remove,
     musiclist,
     findsort,
-    addMyPlayList
+    addMyPlayList,
+    getSortPlayList,
+    createOk,
+    deletePlayList
 }

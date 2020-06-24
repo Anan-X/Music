@@ -19,7 +19,7 @@ app.use(session({
     secret: 'keyboard cat', 
     cookie: ('name', 'value', { path: '/', httpOnly: true,secure: false, maxAge:  60000 }),
     //重新保存：强制会话保存即使是未修改的。默认为true但是得写上
-    resave: false, 
+    resave: true, 
     //强制“未初始化”的会话保存到存储。 
     saveUninitialized: true,  
     

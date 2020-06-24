@@ -93,6 +93,18 @@ $("#playlist").on("click", "button", function () {
     
     if($(this).text()=="创建表单"){
         // 创建表单
+        $("#playlist").html(`
+  
+            <label class="sr-only" for="inlineFormInputGroupUsername2">Username</label>
+            <div class="input-group mb-2 mr-sm-2">
+                <div class="input-group-prepend">
+                <div class="input-group-text">@</div>
+                </div>
+                <input type="text" class="form-control" id="inlineFormInputGroupUsername2" placeholder="名称">
+            </div>
+            <button id="createOk" onclick="" class="btn btn-primary mb-2">创建</button>
+        
+        `)
     }else{
         let sort = $(this).text()
         $.get('/addMyPlayList?sort='+sort+'&id='+id,(data, status)=>{
@@ -104,4 +116,13 @@ $("#playlist").on("click", "button", function () {
         })
     }
     
+})
+
+// 创建歌单ok
+$("#playlist").on('click','#createOk',function(){
+    let sort = $("#inlineFormInputGroupUsername2").val()
+    $.get('createOk?sort='+sort,(data, status)=>{
+        $("#exampleModalCenter").modal("hide")
+        // alert(data["msg"])
+    })
 })

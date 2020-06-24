@@ -10,8 +10,8 @@
 <body>
   <div class="container" style="margin-top: 20px;">
     <div class="jumbotron">
-      <h2 class="display-4 text-center">登录</h2>
-      <h4 class="display-10 text-center"><a href="#" id="loginPass"  class="text-decoration-none">密码登录</a>&nbsp;&nbsp;&nbsp;<a href="#" id="loginPhone"  class="text-decoration-none">手机登录</a></h4>
+      <h2 class="display-4 text-center">登录 <small><a class="btn btn-dark" href="/users/register" style="color: white;">注册</a></small></h2>
+      <h4 class="display-10 text-center"><a href="#" id="loginPass"  class="text-reset">密码登录</a>&nbsp;&nbsp;&nbsp;<a href="#" id="loginPhone" class="text-reset">手机登录</a></h4>
       <!-- 密码登录 -->
       <form id="formPass" action="/users/loginOk" method="POST">
         <div class="form-group">
@@ -23,10 +23,10 @@
           <label for="exampleInputPassword1">密码</label>
           <input type="password" name="password" class="form-control" id="exampleInputPassword1" required>
         </div>
-        <div class="row">
-          <div class="col-md-6"><button type="submit" class="btn btn-primary">登录</button></div>
-          <div class="col-md-6"><a class="btn btn-primary" href="/users/register" style="color: white;">注册</a></div>
-        </div>
+        
+          <button type="submit" class="btn btn-dark btn-lg col-md-12">登录</button>
+          
+       
         
       </form>
       <!-- 手机验证码登录 -->
@@ -46,10 +46,7 @@
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-6"><button type="submit" class="btn btn-primary">登录</button></div>
-          <div class="col-md-6"><a class="btn btn-primary" href="/users/register" style="color: white;">注册</a></div>
-        </div>
+        <button type="submit" class="btn btn-dark btn-lg col-md-12">登录</button>
       </form>
     </div>
   </div>

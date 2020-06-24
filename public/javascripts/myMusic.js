@@ -1,29 +1,45 @@
-   $("#mylovemusic").click(function () {
-    let username = $('#user').text()
-       $.get("/getmylovemusic/?username="+username, function (data, status) {
-           //    console.log(data)
-           musicTbody(data, status);
-       })
-   })
-   //   感性
-   $("#sensitivemusic").click(function () {
-    let username = $('#user').text()
-       $.get("/getsensitivemusic/?username="+username, function (data, status) {
-        musicTbody(data, status);
-       })
-   })
-//    进入页面加载
-   $(function () {
-    let username = $('#user').text()
-    // console.log(username+'lalal')
-    //    let search = window.location.search  //获取url的参数
-       $.get("/getmylovemusic/?username="+username, function (data, status) {
-           //    console.log(data)
-           musicTbody(data, status);
-       })
-   });
 
    
+//    进入页面加载
+   $(function () {
+    // 首先先获取用户的歌单名称API   findsort    然后将歌单遍历出来
+    $.get("/findsort",(data,status) =>{
+        $("#myPlayList").empty()
+        for(let i=0; i<data.length; i++){
+            $("#myPlayList").append(`
+            <button type="button" class="list-group-item list-group-item-action">`+ data[i]["sort"]+`
+          </button>
+            `)
+        }
+        let sort = $("#myPlayList button").eq(0).text()
+    let username = $("#user").text()
+    $("#playListTitle").html(sort)
+    $.get("/getSortPlayList?sort="+sort+"&username="+username,(data, status) =>{
+        musicTbody(data, status);
+    })
+    })
+   });
+// 对遍历出来的歌单添加点击事件 用来获取用户的歌单列表
+$("#myPlayList").on('click','button',function(){
+    let sort = $(this).text()
+    let username = $("#user").text()
+    $("#playListTitle").html(sort)
+    $.get("/getSortPlayList?sort="+sort+"&username="+username,(data, status) =>{
+        musicTbody(data, status);
+    })
+})
+
+// 删除歌单
+$("#deletePlayList").click(function(){
+    let username = $("#user").text()
+    let sort = $("#playListTitle").text()
+    $.get("/deletePlayList?username="+username+"&sort="+sort,(data, status)=>{
+        if(data["code"]==200){
+            $("#iframe",parent.document).attr("src","/myMusic?username="+username)
+        }
+    })
+})
+
    // 播放或者暂停封装函数
 var playpaused =function(audio){
     let musicTime = $('#musicTime', parent.document);
@@ -77,7 +93,8 @@ var musicTbody = function(data, status){
                )
                //    移除歌单事件
                $("tbody tr").eq(i).on("click", "button", function () {
-                   $.get("/music_remove?id=" + data[i].id, (data, status) => {
+                    let username = $("#user").text()
+                   $.get("/music_remove?id=" + data[i].id+"&username="+username, (data, status) => {
                        if (data.code == 200) {
                            $("tbody tr").eq($(this).parent().parent().index()).remove();
                            let tr_num = $("tbody tr").length;
