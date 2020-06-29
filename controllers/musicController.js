@@ -43,7 +43,7 @@ let getmusic = (req, res) =>{
         }
         dbCongif.sqlConnect(sql, sqlArr, callBack)
     }else{
-        res.redirect('http://127.0.0.1:3000/users/')
+        res.redirect('/users/')
         console.log('未登录')
     }
     
@@ -186,10 +186,10 @@ let uploadmusicok = (req, res, next) =>{
       let datastr = JSON.stringify(data);
       let dataObj = JSON.parse(datastr);
       console.log(dataObj);
-        let sql = `insert into musiclist(musicname, singer, time, album, sort, musicword ,path) values(?, ?, ?, ?, ?, ?, ?)`;
+        let sql = `insert into musiclist(musicname, singer, time, album,  musicword ,path) values(?, ?,  ?, ?, ?, ?)`;
         // console.log(file.path)
         let musicpath = `upload/musics/`+file.originalname;
-        let sqlArr = [dataObj.musicname, dataObj.singer, dataObj.time, dataObj.album, dataObj.sort, dataObj.musicword, musicpath]
+        let sqlArr = [dataObj.musicname, dataObj.singer, dataObj.time, dataObj.album,  dataObj.musicword, musicpath]
         dbCongif.sqlConnect(sql, sqlArr,(err,data)=>{
             if(err){
               console.log(err);
@@ -209,7 +209,7 @@ let uploadmusicok = (req, res, next) =>{
               }
             }
         })
-        res.redirect('/myMusic');
+        res.redirect('/');
     }
 }
 // 移除歌单

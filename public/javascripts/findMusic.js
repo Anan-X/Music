@@ -46,7 +46,7 @@ var musicTbody = function (data, status) {
         $('tbody').append(
             `<tr>
              <th scope="row">` + (i + 1) + `</th>
-             <td><img name='` + data[i].id + `' src="images/视频播放.svg"/></td>
+             <td><img class="pointer" name='` + data[i].id + `' src="images/视频播放.svg"/></td>
              <td ><span class="d-inline-block text-truncate" style="max-width: 100px;">` + data[i].musicname + `</span></td>
              <td ><span class="d-inline-block text-truncate" style="max-width: 100px;">` + data[i].time + `</span></td>
              <td ><span class="d-inline-block text-truncate" style="max-width: 100px;">` + data[i].singer + `</span></td>
@@ -67,11 +67,11 @@ var musicTbody = function (data, status) {
                         for (let i = 0; i < data.length; i++) {
                             $('#playlist').append(`<button name="`+musicId+`" type="button" class="btn btn-secondary">` + data[i]['sort'] + `</button>`)
                         }
-                        $('#playlist').append(`<button type="button" class="btn btn-secondary">创建表单</button>`)
+                        $('#playlist').append(`<button type="button" class="btn btn-secondary">创建歌单</button>`)
                     }
 
                 } else {
-                    $('#playlist').html(`<button type="button" class="btn btn-secondary">创建表单</button>`)
+                    $('#playlist').html(`<button type="button" class="btn btn-secondary">创建歌单</button>`)
                 }
             })
             
@@ -83,6 +83,7 @@ var musicTbody = function (data, status) {
 
             let audio = $('#audio', parent.document);
             audio.attr('src', data[i].path)
+            audio.attr('name',i)
             playpaused(audio)
         })
     }
@@ -91,7 +92,7 @@ var musicTbody = function (data, status) {
 $("#playlist").on("click", "button", function () {
     let id = $(this).attr('name')
     
-    if($(this).text()=="创建表单"){
+    if($(this).text()=="创建歌单"){
         // 创建表单
         $("#playlist").html(`
   

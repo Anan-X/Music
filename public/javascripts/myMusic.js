@@ -82,7 +82,7 @@ var musicTbody = function(data, status){
                $('tbody').append(
                    `<tr>
              <th scope="row">` + (i + 1) + `</th>
-             <td><img name='`+data[i].id+`' src="images/视频播放.svg"/></td>
+             <td><img class="pointer" name='`+data[i].id+`' src="images/视频播放.svg"/></td>
              <td ><span class="d-inline-block text-truncate" style="max-width: 100px;">` + data[i].musicname + `</span></td>
              <td ><span class="d-inline-block text-truncate" style="max-width: 100px;">` + data[i].time + `</span></td>
              <td ><span class="d-inline-block text-truncate" style="max-width: 100px;">` + data[i].singer + `</span></td>
@@ -112,6 +112,7 @@ var musicTbody = function(data, status){
                 
                 let audio = $('#audio', parent.document);
                 audio.attr('src',data[i].path)
+                audio.attr('name',i)
                 playpaused(audio)
             })
            }
@@ -123,7 +124,7 @@ $("#loginout").click(function(){
     // alert("注销")
     $.get('/users/loginout',(data, status)=>{
         if(data['code']==200){
-            window.location.href='http://127.0.0.1:3000/findmusic'
+            window.location.href='http://'+httpConfig.config["pipe"]+':'+httpConfig.config["port"]
         }
     })
 })

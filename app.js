@@ -10,6 +10,7 @@ var usersRouter = require('./routes/users');
 var http = require('http');
 var app = express();
 var server = http.createServer(app);
+var httpConfig = require('./util/httpconfig');
 
 // 使用 session 中间件
 app.use(session({ 
@@ -64,7 +65,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-server.listen(3000, (req, res) =>{
-  console.log('http://127.0.0.1:3000');
+server.listen(httpConfig.config["port"], (req, res) =>{
+  console.log('http://'+httpConfig.config["pipe"]+':'+httpConfig.config["port"]);
 })
 module.exports = app;

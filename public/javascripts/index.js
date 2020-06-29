@@ -51,3 +51,21 @@ $('#musicTime').change(function(){
     myaudio[0].currentTime=$('#musicTime').val();
 })
 
+// 上一首
+$('#pre').click(function(){
+    let playlist_id = $("#audio").attr("name")
+    let ur = $("#iframe").contents().find("tbody tr img").eq(Number(playlist_id)-1)
+    ur.click()
+    console.log(ur)
+    // alert(url)
+})
+
+// 下一首
+$('#next').click(function(){
+    
+    let playlist_id = $("#audio").attr("name")
+    let ur = $("#iframe").contents().find("tbody tr img").eq(Number(playlist_id)+1)
+    ur.click()
+    
+    // alert(url)
+})
